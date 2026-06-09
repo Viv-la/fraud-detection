@@ -1,6 +1,15 @@
 import pandas as pd
 import numpy as np
-
+try:
+    fraud_df = pd.read_csv("data/raw/Fraud_Data.csv")
+    ip_df = pd.read_csv("data/raw/IpAddress_to_Country.csv")
+    print("Datasets loaded successfully.")
+except FileNotFoundError as e:
+    print(f"File not found: {e}")
+    raise
+except Exception as e:
+    print(f"Unexpected error: {e}")
+    raise
 # Load datasets
 fraud_df = pd.read_csv("data/raw/Fraud_Data.csv")
 ip_df = pd.read_csv("data/raw/IpAddress_to_Country.csv")

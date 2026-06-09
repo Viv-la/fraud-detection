@@ -1,7 +1,15 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+try:
+    credit_df = pd.read_csv("data/raw/creditcard_data.csv")
+    print("Credit card dataset loaded successfully.")
+except FileNotFoundError as e:
+    print(f"File not found: {e}")
+    raise
+except Exception as e:
+    print(f"Unexpected error while loading credit card data: {e}")
+    raise
 # Load dataset
 credit_df = pd.read_csv("data/raw/creditcard_data.csv")
 
@@ -50,3 +58,15 @@ plt.savefig("fraud_correlations.png")
 plt.close()
 
 print("Credit Card EDA completed successfully.")
+
+import pandas as pd
+
+try:
+    credit_df = pd.read_csv("data/raw/creditcard_data.csv")
+    print("Credit card dataset loaded successfully.")
+except FileNotFoundError as e:
+    print(f"File not found: {e}")
+    raise
+except Exception as e:
+    print(f"Unexpected error while loading credit card data: {e}")
+    raise

@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-
+from imblearn.over_sampling import SMOTE
 # Load processed dataset
 fraud_df = pd.read_csv("data/processed/fraud_data_processed.csv")
 
@@ -51,5 +51,19 @@ fraud_encoded.to_csv(
     "data/processed/fraud_feature_engineered.csv",
     index=False
 )
+# Class imbalance handling using SMOTE
+
+if "class" in fraud_encoded.columns:
+    X = fraud_encoded.drop("class", axis=1)
+    y = fraud_encoded["class"]
+
+    print("Original class distribution:")
+    print(y.value_counts())
+
+    smote = SMOTE(random_state=42)
+    X_resampled, y_resampled = smote.fit_resample(X, y)
+
+    print("\nResampled class distribution:")
+    print(y_resampled.value_counts())
 
 print("Feature engineering completed successfully.")
